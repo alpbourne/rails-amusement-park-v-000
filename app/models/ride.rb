@@ -15,6 +15,7 @@ class Ride < ActiveRecord::Base
       "Sorry. You do not have enough tickets to ride the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
     else
       user.update(:tickets => "#{user.tickets - attraction.tickets}", :nausea => "#{user.nausea + attraction.nausea_rating}", :happiness => "#{user.happiness + attraction.happiness_rating}")
+      "Thanks for riding the #{attraction.name}!"
     end
   end
 
