@@ -1,0 +1,27 @@
+<h1>Listing Attractions</h1>
+
+<table>
+  <tr>
+    <td>Picture</td>
+    <td>Name</td>
+    <td>Tickets</td>
+    <td>Details</td>
+  </tr>
+
+  <% @attractions.each do |a| %>
+  <tr>
+    <td><img src="http://<%= a.name.gsub(" ", "")%>.jpg.to/" width="80"></td>
+    <td><%= a.name %></td>
+    <td><%= a.tickets %></td>
+    <% if current_user.admin%>
+      <td><%= link_to "Show #{a.name}", attraction_path(a)%></td>
+    <% else %>
+      <td><%= link_to "Go on #{a.name}", attraction_path(a)%></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+
+<% if @user %>
+  <%= link_to "New Attraction", new_attraction_path%>
+<% end %>
